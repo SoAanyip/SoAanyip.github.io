@@ -1,6 +1,6 @@
 var app = angular.module('wholeApp', ['ngRoute']);
 
-app.config(function($routeProvider) {
+app.config(['$routeProvider',function($routeProvider) {
     $routeProvider.when('/colorful', {
         templateUrl: 'tpls/colorful.html',
         controller:'colorfulCtrl'
@@ -17,7 +17,7 @@ app.config(function($routeProvider) {
     }).otherwise({
         redirectTo: '/'
     })
-});
+}]);
 
 app.controller('homeCtrl',['$scope',function($scope){
     document.getElementsByTagName('body')[0].className = 'home';
