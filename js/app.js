@@ -7,7 +7,11 @@ app.config(function($routeProvider) {
     }).when('/navSlider',{
     	templateUrl:'tpls/navSlider.html',
         controller: 'sliderCtrl'
-    }).when('/',{
+    }).when('/cv',{
+        templateUrl:'tpls/resume.html',
+        controller:'cvCtrl'
+    })
+    .when('/',{
         templateUrl:'tpls/home.html',
         controller:'homeCtrl'
     }).otherwise({
@@ -16,6 +20,7 @@ app.config(function($routeProvider) {
 });
 
 app.controller('homeCtrl',['$scope',function($scope){
+    document.getElementsByTagName('body')[0].className = 'home';
     setTimeout(function(){
         var page = document.getElementById('pageInHome');
         var array = [[255,255,0],[0,220,220],[153,51,0]];
@@ -25,6 +30,7 @@ app.controller('homeCtrl',['$scope',function($scope){
 }])
 
 app.controller('colorfulCtrl',['$scope',function($scope){
+    document.getElementsByTagName('body')[0].className = 'colorful';
     setTimeout(function(){
         var page = document.getElementById('page');
         var array = [[255,255,0],[0,220,220],[153,51,0]];
@@ -35,6 +41,7 @@ app.controller('colorfulCtrl',['$scope',function($scope){
 }])
 
 app.controller('sliderCtrl',['$scope',function($scope){
+    document.getElementsByTagName('body')[0].className = 'ns';
     $('#horizentalNav').slider('left',0,'fast');
     $('header').css('height',$(window).height()+'px');
     $('article').hide();
@@ -43,4 +50,11 @@ app.controller('sliderCtrl',['$scope',function($scope){
         $('article').hide();
         $('article').eq($(this).parent().data('index')).show();
     })
+}])
+
+app.controller('cvCtrl',['$scope',function($scope){
+    document.getElementsByTagName('body')[0].className = 'cv';
+    setTimeout(function(){
+        startLoop(document.getElementById("bg"),[[102,153,255],[153,51,0],[240,204,10]],30000);
+    },1);
 }])

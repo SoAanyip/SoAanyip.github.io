@@ -15,18 +15,30 @@ html{
 article,aside,dialog,footer,header,section,footer,nav,figure,menu{
 	display:block
 }
-header{
+.ns header{
 	width:100%;background-color:#6cc
 
 }
-header h1{
-	position:absolute;top:20%;left:32%;font-size:74px;font-weight:bold
+.ns header h1{
+	position:absolute;
+	top:20%;
+	left:32%;
+	font-size:74px;
+	font-weight:bold;
 }
-header h3{
-	position:absolute;top:45%;left:44%;font-size:24px
+.ns header h3{
+	position:absolute;
+	top:45%;
+	left:44%;
+	font-size:24px
 }
-nav{
-	height:80px;margin-left:100px;width:540px
+.ns nav{
+	height:80px;
+	margin-left:100px;
+	width:540px
+}
+.home h1{
+	margin:20px 0;
 }
 article{
 	min-height:400px;
@@ -75,13 +87,13 @@ li{
 	top: 50%;
 	background-color:#6cc
 }
-#introduce{
+.ns #introduce,.colorful #introduce{
 	position: absolute;
 	width: 100%;
 	height: 100%; 
 	top:100%;
 }
-#title{
+.ns #title,.colorful #title,.home #title{
 	text-align: center;
 	color: #fff;
 	font-size: 80px;
