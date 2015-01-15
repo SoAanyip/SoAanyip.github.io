@@ -1,0 +1,82 @@
+<header>
+	<h1>navSlider.js</h1>
+	<h3>v0.2.0</h3>
+	<a class="fork" href="https://github.com/SoAanyip/navSlider.js" target="_blank"><img src="img/fork.png" alt="Fork me on GitHub" /></a>
+</header>
+<nav>
+	<ul id="horizentalNav">
+		<li>Introduce</li>
+		<li>How to use</li>
+		<li>Develop</li>
+		<li>About</li>
+	</ul>
+</nav>
+<div class="cf"></div>
+
+<article id="intro">
+	<p><b>navSlider.js</b> is a light javascript file basing on jQuery that helps you
+		decorate your nav bar.</p><p>As you can see above, a bar in the background
+		will move to another area when you hover your mouse there. And when you click one
+		of them, the bar will stay there to show the place where you are looking.
+	</p>
+	<br/><br/>
+	<p><b>navSlider.js</b>是一个基于jQuery的轻量级的javascript插件，让你能简单的装饰你的导航条。</p><p>就如你在上方看见的那样，当你把鼠标指向一个选项卡时，一个背景颜色块会跟随者你的鼠标移动。而当你点击了其中一个选项卡，这个颜色块会停留在那里，以提示你当前正在浏览的部分。
+	</p>
+</article>
+<article id="howToUse">
+	<p>You should use jQuery with navSlider; import a copy of jQuery.</p>
+		<p class="code">&lt;script src="js/jquery-1.10.2.min.js">&lt;/script></p><br/>
+		<p>And then import navSlider:</p>
+		<p class="code">&lt;script src="js/navSlider.min.js">&lt;/script></p><br/>
+		<p>Finally, add the slider to your nav:</p>
+		<p class="code param">$(foo).slider(direct,index,speed);<br/>
+			//For example:$('#horizentalNav').slider('left',0,'fast');<br/>
+			//To know more, just click the button 'develop' above.</p><br/>
+		<p>and set a color for the slider:</p>
+		<p class="code">$('.navSlider').css('background-color','yellow');</p><br/>
+		<p>Now you can enjoy it.
+	</p><br/><br/>
+	<p>中文：</p>
+	<p>在使用navSlider之前，你需要引入一个jQuery文件：</p>
+		<p class="code">&lt;script src="js/jquery-1.10.2.min.js">&lt;/script></p><br/>
+		<p>然后引入navSlider：</p>
+		<p class="code">&lt;script src="js/navSlider.min.js">&lt;/script></p><br/>
+		<p>最后，给你的菜单(ul级)添加滑动块：</p>
+		<p class="code param">$(foo).slider(direct,index,speed);<br/>
+			//例如：$('#horizentalNav').slider('left',0,'fast');<br/>
+			//要了解更多，请点击上面的develop选项。</p><br/>
+		<p>给你的滑动块设置颜色：</p>
+		<p class="code">$('.navSlider').css('background-color','yellow');</p><br/>
+		<p>就可以看见效果。
+	</p>
+</article>
+<article id="develop">
+	<p>The params of slider(direct,index,speed):</p>
+		<p class="code param">slider(direct,index,speed)</p>
+		<p class="code">//direct: the direction of your nav,'left' for horizental and
+			'top' for vertical.</p>
+		<p class="code">//index: the slider will begin at which option. 0 for the first.</p>
+		<p class="code">//speed: the speed that the slider moves at. number(millisecond) such as
+			500, '1000' or three useful options 'fast','normal' and 'slow'.</p>
+		<p class="code">//As default, direct='left',index=0,speed='fast'.
+		<p>this function will make a div which has a class "navSlider" and a id, "slider1" for the
+			first slider, "slider2" for the second,etc. So you can normally change it`s style using css:</p>
+		<p class="code">.navSlider{background-color: yellow;}
+	</p><br/><br/>
+	<p>中文：</p>
+	<p>slider(direct,index,speed)的参数：</p>
+		<p class="code param">slider(direct,index,speed)</p>
+		<p class="code">//direct: 你的菜单栏的方向，如果是水平的话使用'left' ，垂直的话使用
+			'top'。</p>
+		<p class="code">//index: 滑动块的起始位置。0代表在第一项。</p>
+		<p class="code">//speed: 滑动块移动的速度。 number(毫秒) 例如
+			500, '1000' 或者三个方便的选项： 'fast','normal' 和 'slow'。</p>
+		<p class="code">//默认设置： direct='left',index=0,speed='fast'.
+		<p>这个函数会构造一个div，它有着类"navSlider"，第一个滑动块有id "slider1"，第二个（如有）滑动块id "slider2"，以此类推。 所以你可以对类和id进行css设置：</p>
+		<p class="code">.navSlider{background-color: yellow;}
+	</p>
+</article>
+<article id="about">
+	<p>version:0.2.0</p><p>date:1/10 2015</p><p>author: So Aanyip, email: cvdura@hotmail.com
+	</p>
+</article>
