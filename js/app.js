@@ -27,7 +27,7 @@ app.controller('homeCtrl',['$scope',function($scope){
         var array = [[255,255,0],[0,220,220],[153,51,0]];
         var msec = 3000;
         startLoop(page,array,msec);
-    },1);
+    },100);
 }])
 
 app.controller('colorfulCtrl',['$scope',function($scope){
@@ -39,7 +39,7 @@ app.controller('colorfulCtrl',['$scope',function($scope){
         var msec = 2000;
         startLoop(page,array,msec);
         startLoop(document.getElementById('isColor'),null,null,'color');
-    },1);
+    },100);
 }])
 
 app.controller('sliderCtrl',['$scope',function($scope){
@@ -60,5 +60,5 @@ app.controller('cvCtrl',['$scope',function($scope){
     document.getElementsByTagName('title')[0].innerHTML='苏晏烨的简历';
     setTimeout(function(){
         startLoop(document.getElementById("bg"),[[102,153,255],[153,51,0],[240,204,10]],30000);
-    },1);
+    },100);
 }])
