@@ -21,6 +21,7 @@ app.config(['$routeProvider',function($routeProvider) {
 
 app.controller('homeCtrl',['$scope',function($scope){
     document.getElementsByTagName('body')[0].className = 'home';
+    document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
     setTimeout(function(){
         var page = document.getElementById('pageInHome');
         var array = [[255,255,0],[0,220,220],[153,51,0]];
@@ -31,6 +32,7 @@ app.controller('homeCtrl',['$scope',function($scope){
 
 app.controller('colorfulCtrl',['$scope',function($scope){
     document.getElementsByTagName('body')[0].className = 'colorful';
+    document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
     setTimeout(function(){
         var page = document.getElementById('page');
         var array = [[255,255,0],[0,220,220],[153,51,0]];
@@ -42,6 +44,7 @@ app.controller('colorfulCtrl',['$scope',function($scope){
 
 app.controller('sliderCtrl',['$scope',function($scope){
     document.getElementsByTagName('body')[0].className = 'ns';
+    document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
     $('#horizentalNav').slider('left',0,'fast');
     $('header').css('height',$(window).height()+'px');
     $('article').hide();
@@ -54,6 +57,7 @@ app.controller('sliderCtrl',['$scope',function($scope){
 
 app.controller('cvCtrl',['$scope',function($scope){
     document.getElementsByTagName('body')[0].className = 'cv';
+    document.getElementsByTagName('title')[0].innerHTML='苏晏烨的简历';
     setTimeout(function(){
         startLoop(document.getElementById("bg"),[[102,153,255],[153,51,0],[240,204,10]],30000);
     },1);
