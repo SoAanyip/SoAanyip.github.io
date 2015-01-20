@@ -12,6 +12,9 @@ html{
 	top: 0;
 	right: 0;
 }
+.fork img{
+	border:0;
+}
 article,aside,dialog,footer,header,section,footer,nav,figure,menu{
 	display:block
 }
