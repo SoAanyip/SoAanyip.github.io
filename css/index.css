@@ -6,6 +6,7 @@ html{
 	height: 100%;
 	font-family:'helvetica neue', arial,'hiragino sans gb', stheiti,'microsoft yahei', 'wenquanyi micro hei',sans-serif;
 	color:#3c3c3c;
+	font-size: 16px;
 }
 .fork{
 	position: absolute;
@@ -77,30 +78,57 @@ li{
 	height: 100%; 
 	background-color:rgb(0,0,0)
 }
-#pageInHome{
+.shenmegui #page{
+	background-color: #669933;
+}
+.homeIntroduce{
 	position: absolute;
 	width: 100%;
-	height: 50%; 
+}
+.homeIntroduce:nth-child(1){
+	height: 34%; 
 	background-color:rgb(0,0,0)
 }
-#sliderInHome{
-	position: absolute;
-	width: 100%;
-	height: 50%; 
-	top: 50%;
-	background-color:#6cc
+.homeIntroduce:nth-child(2){
+	height: 33%; 
+	top: 34%;
+	background-color:#6cc;
 }
-.ns #introduce,.colorful #introduce{
+.homeIntroduce:nth-child(3){
+	height: 33%; 
+	top: 67%;
+	background-color: #669933;
+}
+.ns #introduce,.colorful #introduce,.shenmegui #introduce{
 	position: absolute;
 	width: 100%;
 	height: 100%; 
 	top:100%;
 }
-.ns #title,.colorful #title,.home #title{
+.ns #title,.colorful #title{
 	text-align: center;
 	color: #fff;
 	font-size: 80px;
 	line-height: 5;
+}
+.home #title{
+	text-align: center;
+	color: #fff;
+	font-size: 3rem;
+	line-height: 2;
+}
+.shenmegui #page div{
+	margin-top: 10rem;
+	color: #fff;
+}
+#falseTitle{
+	text-align: center;
+	font-size: 2rem;
+	text-decoration:line-through;
+}
+.shenmegui #title{
+	text-align: center;
+	font-size: 5.5rem;
 }
 #pageInHome #title,#sliderInHome #title{
 	line-height: 2;

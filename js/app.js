@@ -10,10 +10,12 @@ app.config(['$routeProvider',function($routeProvider) {
     }).when('/cv',{
         templateUrl:'tpls/resume.html',
         controller:'cvCtrl'
-    })
-    .when('/',{
+    }).when('/',{
         templateUrl:'tpls/home.html',
         controller:'homeCtrl'
+    }).when('/shenmegui',{
+        templateUrl:'tpls/shenmegui.html',
+        controller:'shenmeguiCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -23,12 +25,29 @@ app.controller('homeCtrl',['$rootScope',function($rootScope){
     document.getElementsByTagName('body')[0].className = 'home';
     document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
     loadColorful($rootScope,'pageInHome');
+    if($rootScope.shenmegui) shenmegui.stopJoke();
 }])
 
 app.controller('colorfulCtrl',['$rootScope',function($rootScope){
     document.getElementsByTagName('body')[0].className = 'colorful';
     document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
     loadColorful($rootScope,'page');
+}])
+
+app.controller('shenmeguiCtrl',['$rootScope',function($rootScope){
+    document.getElementsByTagName('body')[0].className = 'shenmegui';
+    document.getElementsByTagName('title')[0].innerHTML='So Aanyip`s GitHub';
+    if(!$rootScope.shenmegui){
+        var SMGScript = document.createElement('script');
+        SMGScript.src="js/shenmegui.min.js";
+        document.body.appendChild(SMGScript);
+        SMGScript.onload = function(){
+            shenmegui.startJoke(['qq','weibo'],5000,15000);
+            $rootScope.shenmegui = true;
+        }
+    }else{
+        shenmegui.startJoke(['qq','weibo'],5000,15000);
+    }
 }])
 
 app.controller('sliderCtrl',['$rootScope',function($rootScope){
@@ -45,6 +64,7 @@ app.controller('sliderCtrl',['$rootScope',function($rootScope){
         }
         sliderScript.onload = function(){
             addSlider();
+            $rootScope.navSlider = true;
         };
     }else{
         addSlider();

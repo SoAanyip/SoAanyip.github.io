@@ -1,0 +1,26 @@
+<header id="page">
+	<a class="fork" href="https://github.com/soaanyip/shenmegui.js" target="_blank"><img src="img/fork.png" alt="Fork me on GitHub" /></a>
+	<div>
+		<h2 id="falseTitle">什么鬼点追唉撕</h2>
+		<h1 id="title">shenmegui.js</h1>
+	</div>
+</header>
+<div id="introduce">
+	<article>
+		<p>shenmegui.js是一个用于开玩笑的js插件，让你的网站随机的播放出不同的提示音（如qq嘀嘀声），所以请不要在严肃正经的场合使用，仅供娱乐（愚人节除外）。声音播放使用HTML5的audio元素，不兼容IE8-。低版本浏览器用户无法听见也算是一种玩笑了。</p>
+		<p>最简单用法：</p>
+		<p class="code">shenmegui.startJoke(['qq','weibo']);</p><br/>
+		<p>调用方法：</p>
+		<p class="code">function startJoke(arr,min,max)</p>
+		<p class="code"> @param  {Array} arr  要应用的消息声音来源，传入string，如['qq']。现在可用的参数：'qq','weibo'.</p>
+		<p class="code">@param  {Number} min 出现一次声音的最短时间(毫秒),默认1000.</p>
+		<p class="code">@param  {Number} max 出现一次声音的最长时间(毫秒),默认30000.</p>
+		<p class="code">startJoke(['qq','weibo'],10000,30000);</p><br/>
+		<p>停止方法：</p>
+		<p class="code">shenmegui.stopJoke();</p><br/>
+		<p>你还可以添加自己的音频：</p>
+		<p class="code">shenmegui.addJoke(path,id);</p>
+		<p class="code">@param {String} path 自定义声音的路径(包括文件名)</p>
+		<p class="code">@param {String} id   自定义声音的id(可选)</p>
+	</article>
+</div>
