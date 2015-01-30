@@ -155,6 +155,15 @@ body.cv{
 	margin:0;
 	padding-left: 2rem;
 }
+@media (max-width: 830px){
+	.skillRefer{
+		float: none;
+	}
+	.skillRefer li{
+		display: inline-block;
+		padding-right: 2rem;
+	}
+}
 #desc p{
 	line-height: 1.5rem;
 	text-indent: 2rem;
