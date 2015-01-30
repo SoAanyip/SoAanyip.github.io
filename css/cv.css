@@ -108,6 +108,16 @@ body.cv{
 .project h3{
 	font-size: 1.6rem;
 }
+.subProject{
+	width:50%;
+	margin-top:2rem;
+}
+@media (max-width: 900px){
+	.subProject{
+		width:100%;
+	}
+}
+
 .alignCenter{
 	text-align: center;
 }
