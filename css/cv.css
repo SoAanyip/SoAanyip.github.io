@@ -166,7 +166,7 @@ body.cv{
 		padding-right: 2rem;
 	}
 }
-#desc p{
+#desc p,#thanks p{
 	line-height: 1.5rem;
 	text-indent: 2rem;
 
