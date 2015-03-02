@@ -3,6 +3,11 @@ html{
 	font-size: 16px;
 	overflow-x:hidden;
 }
+@media (max-width: 830px){
+	html{
+		font-size:14px;
+	}
+}
 body.cv{
 	position: relative;
 	width: 100%;
