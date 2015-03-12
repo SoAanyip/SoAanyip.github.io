@@ -93,23 +93,21 @@ app.controller('cvCtrl',['$rootScope',function($rootScope){
 }])
 
 function loadColorful($rootScope,id){
+    var page = document.getElementById(id);
+    var array = [[255,255,0],[0,220,220],[153,51,0]];
+    var msec = 3000;
+    page.style.backgroundColor='rgb(141,226,85)';
     if(!$rootScope.colorful){
         var colorfulScript = document.createElement('script');
         colorfulScript.src="js/colorful.min.js";
         document.body.appendChild(colorfulScript);
         $rootScope.colorful = true;
         colorfulScript.onload = function(){
-            var page = document.getElementById(id);
-            var array = [[255,255,0],[0,220,220],[153,51,0]];
-            var msec = 3000;
             setTimeout(function(){
                 startLoop(page,array,msec);
             },100);
         }
     }else{
-        var page = document.getElementById(id);
-        var array = [[255,255,0],[0,220,220],[153,51,0]];
-        var msec = 3000;
         setTimeout(function(){
             startLoop(page,array,msec);
         },100);
