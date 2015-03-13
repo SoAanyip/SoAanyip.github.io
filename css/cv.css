@@ -8,27 +8,27 @@ html{
 		font-size:14px;
 	}
 }
-body.cv{
+body{
 	position: relative;
 	width: 100%;
 	height: 100%;
 	color: #fff;
 }
-.cv header{
+header{
 	width: 100%;
 	margin: 40px auto;
 	text-align: center;
 }
-.cv section{
+section{
 	margin:0 10%;
 }
-.cv p{
+p{
 	margin:.8rem 0;
 }
-.cv h3{
+h3{
 	text-align: center;
 }
-.cv a{
+a{
 	color: #fff;
 	text-decoration: none;
 	border-bottom:2px solid #fff;
@@ -37,15 +37,15 @@ body.cv{
 	-moz-transition:all 0.1s linear;
 	-webkit-transition:all 0.1s linear;
 }
-.cv a:hover,a:active{
+a:hover,a:active{
 	color:#ff9900;
 	text-shadow:2px 2px 1px #ccc;
 	border-bottom-color: #ff9900;
 }
-.cv li{
+li{
 	list-style: none;
 }
-.cv #bg{
+#bg{
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -54,7 +54,7 @@ body.cv{
 	background-color: rgb(141,226,85);
 	z-index: -101;
 }
-.cv h1.title{
+h1.title{
 	font-size: 3rem;
 	text-shadow:2px 2px 1px #bbb;
 }
@@ -66,13 +66,13 @@ body.cv{
 	margin-left: 15%;
 	margin-top: 2rem;
 }
-.cv #introduce{
+#introduce{
 	float: left;
 	margin-left: 10%;
 	font-size: 1.4rem;
 }
 
-.cv img{
+img{
 	border:5px solid #eee;
 }
 .photo{
@@ -104,6 +104,7 @@ body.cv{
 }
 .project h3{
 	font-size: 1.6rem;
+	margin: 1rem 0;
 }
 .subtitle{
 	font-size: 1.4rem;
@@ -123,12 +124,13 @@ body.cv{
 .alignCenter{
 	text-align: center;
 }
-.cv section ul{
+section ul{
 	width: 100%;
 	text-indent: 2rem;
 	font-size: 1.4rem;
+	padding-left: 0;
 }
-.cv section li{
+section li{
 	margin-top:1rem;
 	text-shadow:1.4px 1.4px 1px #aaa;
 }
