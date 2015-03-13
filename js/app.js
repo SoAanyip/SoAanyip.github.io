@@ -8,7 +8,6 @@ app.config(['$routeProvider',function($routeProvider) {
     	templateUrl:'tpls/navSlider.html',
         controller: 'sliderCtrl'
     }).when('/cv',{
-        templateUrl:'tpls/resume.html',
         controller:'cvCtrl'
     }).when('/',{
         templateUrl:'tpls/home.html',
