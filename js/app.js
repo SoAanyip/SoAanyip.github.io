@@ -73,7 +73,7 @@ app.controller('sliderCtrl',['$rootScope',function($rootScope){
 }])
 
 app.controller('cvCtrl',['$rootScope',function($rootScope){
-    document.getElementsByTagName('body')[0].className = 'cv';
+    /*document.getElementsByTagName('body')[0].className = 'cv';
     document.getElementsByTagName('title')[0].innerHTML='苏晏烨的简历';
     if(!$rootScope.colorful){
         var colorfulScript = document.createElement('script');
@@ -89,7 +89,8 @@ app.controller('cvCtrl',['$rootScope',function($rootScope){
         setTimeout(function(){
             startLoop(document.getElementById("bg"),[[102,153,255],[153,51,0],[240,204,10]],30000);
         },100);
-    }
+    }*/
+    window.location.href="../cv/cn.html";
 }])
 
 function loadColorful($rootScope,id){
