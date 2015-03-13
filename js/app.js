@@ -8,7 +8,8 @@ app.config(['$routeProvider',function($routeProvider) {
     	templateUrl:'tpls/navSlider.html',
         controller: 'sliderCtrl'
     }).when('/cv',{
-        redirectTo:'../cv/cn.html'
+        templateUrl:'tpls/null.html',
+        controller:'cvCtrl'
     }).when('/',{
         templateUrl:'tpls/home.html',
         controller:'homeCtrl'
@@ -89,6 +90,7 @@ app.controller('cvCtrl',['$rootScope',function($rootScope){
             startLoop(document.getElementById("bg"),[[102,153,255],[153,51,0],[240,204,10]],30000);
         },100);
     }*/
+    window.location.href="../cv/cn.html";
 }])
 
 function loadColorful($rootScope,id){
