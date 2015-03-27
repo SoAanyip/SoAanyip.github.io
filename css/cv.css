@@ -16,8 +16,9 @@ body{
 }
 header{
 	width: 100%;
-	margin: 40px auto;
+	margin:0 auto 2.4rem;
 	text-align: center;
+	overflow: hidden;
 }
 section{
 	margin:0 10%;
@@ -39,19 +40,19 @@ a{
 }
 a:hover,a:active{
 	color:#ff9900;
-	text-shadow:2px 2px 1px #ccc;
+	text-shadow:1px 1px 1px #ccc;
 	border-bottom-color: #ff9900;
 }
 li{
 	list-style: none;
 }
 #bg{
-	position: fixed;
+	position: absolute;
+	/* position: fixed;*/
 	top: 0;
-	left: 0;
+	left: 0; 
 	width: 100%;
 	height: 100%;
-	background-color: rgb(141,226,85);
 	z-index: -101;
 }
 h1.title{
