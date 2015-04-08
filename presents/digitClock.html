@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>digitClock</title>
+	<style>
+		#wrap{
+			width: 80%;
+			height: 500px;
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<script src="../js/digitClock.min.js"></script>
+	<script>
+		window.onload = function(){
+			digitClock.clock(document.getElementById('wrap'));
+		}
+	</script>
+</body>
+</html>
