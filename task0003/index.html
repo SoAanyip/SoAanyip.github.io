@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GTD Tools</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header>
+        <div id="header-cont">
+            <h1 id="header-title">GTD Tools</h1>
+        </div>
+    </header>
+    <menu>
+        <div>
+            <div id="tabulation">
+                <h2 id="tab-title">分类列表</h2>
+                <div id="all-mission">所有任务(0)</div>
+                <ul id="tab-ul">
+                    <!-- <li class="tab-tree-li">
+                        <div>百度IFE项目<span class="delete-folder"></span></div>
+                        <ul>
+                            <li>task1</li>
+                            <li>task2</li>
+                            <li class="tab-tree-li">
+                                <div>部分<span class="delete-folder"></span></div>
+                                <ul>
+                                    <li>h1</li>
+                                    <li>h2</li>
+                                    <li class="tab-tree-li">
+                                        <div>小部分<span class="delete-folder"></span></div>
+                                        <ul>
+                                            <li>2</li>
+                                            <li>1</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="tab-tree-li">
+                        <div>毕业论文<span class="delete-folder"></span></div>
+                    </li>
+                    <li class="tab-tree-li">
+                        <div>社团<span class="delete-folder"></span></div>
+                    </li>
+                    <li class="tab-tree-li">
+                        <div>默认分类</div><span class="delete-folder"></span>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="add-at-bottom">
+                <a href="javascript:" id="add-tab">新增分类</a>
+            </div>
+        </div>
+    </menu>
+    <div id="mission-side">
+        <div id="mission-type">
+            <a href="javascript:" class="type-active" id="select-all-mission" title="所有任务" data-type="all">所有</a>
+            <a href="javascript:" id="select-unfinish-mission" title="未完成的任务" data-type="unfinish">未完成</a>
+            <a href="javascript:" id="select-finish-mission" title="已完成的任务" data-type="finish">已完成</a>
+        </div>
+        <div id="mission-timeline">
+            <ol>
+                <!-- <li>
+                    <dl>
+                        <dt>2015-05-04</dt>
+                        <dd>to-do1</dd>
+                        <dd>to-do2</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>2015-05-01</dt>
+                        <dd>to-do3</dd>
+                        <dd>to-do4</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>2015-04-28</dt>
+                        <dd>to-do5</dd>
+                        <dd>to-do6</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>2015-04-09</dt>
+                        <dd>to-do7</dd>
+                        <dd>to-do8</dd>
+                    </dl>
+                </li> -->
+            </ol>
+        </div>
+        <div class="add-at-bottom">
+            <a href="javascript:" id="add-mission">新增任务</a>
+        </div>
+    </div>
+    <div id="mission-cont">
+        <div id="cont-title-bar">
+            <h2></h2>
+            <a href="javascript:" class="icon-btn" id="edit-mission" title="编辑任务"></a>
+            <a href="javascript:" class="icon-btn" id="finish-mission" title="完成任务"></a>
+            <a href="javascript:" class="word-btn" id="cancel-edit">取消修改</a>
+            <a href="javascript:" class="word-btn" id="save-edit">保存修改</a>
+        </div>
+        <div id="cont-mission-time">
+            任务日期：<span></span>
+        </div>
+        <div id="cont-mission-body">
+        </div>
+    </div>
+    <script src="js/util.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

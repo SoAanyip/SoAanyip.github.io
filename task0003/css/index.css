@@ -1,0 +1,299 @@
+/* common */
+article,footer,header,menu,nav,section{
+    display: block;
+}
+html{
+    position: relative;
+    height: 100%;
+    font-size: 14px;
+}
+body{
+    height: 100%;
+    margin: 0;
+    font-family:'helvetica neue', arial,'hiragino sans gb', stheiti,'microsoft yahei', 'wenquanyi micro hei',sans-serif;
+}
+
+/* header */
+#header-cont{
+    position: relative;
+    height: 60px;
+    min-width: 860px;
+    overflow: hidden;
+    background-color: rgb(221,221,221);
+}
+#header-title{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.6em;
+    height: 100%;
+    font-size: 1.6em;
+    color: rgb(144,144,144);
+}
+
+/* menu */
+menu{
+    margin: 0;
+    padding: 0;
+}
+menu > div,#mission-side{
+    position: absolute;
+    top:60px;
+    bottom: 0;
+    width: 230px;
+    min-height: 400px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    box-sizing:border-box;
+    background-color: rgb(242,242,242);
+}
+#tab-title{
+    font-size: 1em;
+}
+#all-mission{
+    margin: 1.5em 0 1em 1em;
+    cursor: pointer;
+}
+#tabulation{
+    padding-left: 1em;
+    box-sizing:border-box;
+}
+#tabulation ul{
+    padding-left: 0;
+    margin: .4em 0 .4em .5em;
+}
+#tab-ul li{
+    margin: .3em 0 ;
+    padding: 0;
+    list-style: none;
+}
+#tab-ul ul > li{   
+    padding-left: 2em;
+    background: url("../img/icon-file.png") no-repeat left 100%;
+    cursor: pointer;
+}
+#tab-ul .tab-tree-li{
+    padding: 0;
+    margin-left: .2em;
+    background: none;
+    cursor: default;
+}
+#tab-ul div{
+    margin: 0;
+    padding: .5em 0 0 2em;
+    background: url("../img/icon-folder.png") no-repeat left 100%;
+    cursor: pointer;
+}
+#tab-ul div:hover,#tab-ul ul > li:hover{
+    color:rgb(106,187,66);
+}
+#tab-ul .tab-tree-li:hover{
+    color:#000;
+}
+#tab-ul div:hover>.delete-folder{
+    display: block;
+}
+.delete-folder{
+    display: none;
+    float: right;
+    width: 20px;
+    height: 20px;
+    padding-right: 1em;
+    background: url("../img/icon-delete.png") no-repeat ;
+}
+.add-at-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #ccc;
+    text-indent: 4em;
+    font-size: .9em;
+    background-color: rgb(242,242,242);
+} 
+.add-at-bottom a{
+    display: block;
+    text-decoration: none;
+    color: #000;
+    background: url("../img/icon-plus.png") no-repeat 10% 50%; 
+}
+
+/* mission-side */
+#mission-side{
+    left: 230px;
+    background-color: #fff;
+}
+#mission-type{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    background-color: rgb(242,242,242);
+}
+#mission-type > a{
+    display: inline-block;
+    line-height: 1;
+    padding: .2em .6em;
+    border:none;
+    text-decoration: none;
+    color:#000;
+    font-size: .9em;
+}
+#mission-type > a.type-active{
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+/* mission-timeline */
+#mission-timeline{
+
+}
+#mission-timeline ol{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#mission-timeline dl{
+    margin: 0;
+}
+#mission-timeline dl > *{
+    height: 26px;
+    line-height: 26px;
+    box-sizing:border-box;
+}
+#mission-timeline dt{
+    padding-left: 1em;
+    background-color: rgb(250,250,238);
+}
+#mission-timeline dd{
+    margin-left: 0;
+    padding-left: 2em;
+    cursor: pointer;
+}
+#mission-timeline dd:hover{
+    background-color: rgb(242,242,242);
+}
+.font-active{
+    color:rgb(106,187,66);
+}
+
+/* mission-cont */
+#mission-cont{
+    position: absolute;
+    top:60px;
+    bottom: 0;
+    left: 460px;
+    right: 0;
+    min-width: 400px;
+    min-height: 400px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+#cont-title-bar{
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    background-color: rgb(242,242,242);
+}
+#cont-title-bar h2{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    font-size: 1.2em;
+    text-indent: 1em;
+}
+.icon-btn{
+    display: none;
+    width: 30px;
+    height: 30px;
+    border:none;
+}
+.word-btn{
+    font-size: 1em;
+    text-decoration: none;
+    color: #000;
+    border:0;
+    border-bottom: 2px solid #000;
+}
+.word-btn:hover,.word-btn:active{
+    color: rgb(106,187,66);
+    border-bottom: 2px solid rgb(106,187,66);
+}
+#save-edit,#cancel-edit{
+    display: none;
+    float: right;
+    margin: 16px 16px 0px 0px;
+}
+#edit-mission,#finish-mission{
+    float: right;
+    margin: 10px 16px 0 0;
+}
+#edit-mission{
+    background: url("../img/icon-write.png") no-repeat;
+}
+#finish-mission{
+    background: url("../img/icon-finish.png") no-repeat;
+}
+#cont-mission-time{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+    text-indent: 1em;
+    background-color: rgb(250,250,238);
+}
+#cont-mission-time span{
+    display: inline-block;
+}
+#cont-mission-body{
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    width: 100%;
+    padding: .8em;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+#cont-mission-body p{
+    margin: .5em 0;
+}
+#cont-mission-body.mission-editing{
+    padding: 0;
+    overflow-y: hidden;
+}
+
+/* 编辑中的任务 */
+#mission-cont input,#mission-cont textarea{
+    font: inherit;
+}
+#mission-cont input{
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: inherit;
+    border:0;
+}
+#cont-mission-edit{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: .8em;
+    box-sizing: border-box;
+}
+
+
+/* order
+position,float,display,top,left...
+height,width,line-height
+margin,padding,border
+font-size,background,color and so on.
+ */
+/* colors
+header gray : rgb(221,221,221);
+header title gray : rgb(144,144,144);
+section bg gray : rgb(242,242,242);
+selected font green : rgb(106,187,66);
+ */
