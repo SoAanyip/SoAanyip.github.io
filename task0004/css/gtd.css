@@ -7,7 +7,6 @@ html{
     position: relative;
     height: 100%;
     font-size: 14px;
-    overflow-x: hidden;
 }
 body{
     height: 100%;
@@ -29,29 +28,36 @@ ul{
     width: 100%;
 }
 
-.hide-bg{
+.hide-bg#task{
      z-index: -1; 
 }
 
-.task-show #tab{
+ .task-show #tab{
     overflow: hidden;
      -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-90%,0,0); 
-}
+} 
 .task-show #task{
-    z-index: 2;
     left: 100%;
     overflow: hidden;
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-90%,0,0); 
-} 
+}
+
+.task-now #tab{
+    left: -90%;
+}
+.task-now #task{
+    left: 10%;
+    width: 90%;
+}
 
 #tab{
     z-index: 1;
     background-color: #0cf;
 }
 #task{
-    /* z-index: 2; */
+     z-index: 2; 
     background-color: #cf0;
 }
 
