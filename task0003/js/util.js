@@ -116,6 +116,12 @@ function removeClass(element, oldClassName) {
   element.className = element.className.substring(0,index) + element.className.substring(index+oldClassName.length);
 }
 
+// toggleClass
+function toggleClass(element, className){
+  if( hasClass(element,className) ) removeClass(element,className);
+  else addClass(element,className);
+}
+
 // 判断siblingNode和dom是否为同一个父元素下的同一级的元素，返回bool值
 function isSiblingNode(element, siblingNode) {
   if(!siblingNode || !element) return false;

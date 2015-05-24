@@ -1,6 +1,8 @@
-
+window.onload = function(){
+    GTDOnclickFunctions();
+}
 /*配置点击事件*/
-(function GTDOnclickFunctions(){
+function GTDOnclickFunctions(){
     try{
         switchMissionType();    //选择所有任务或者完成的任务或者未完成的任务
         selectMission();    //选择了具体的任务
@@ -15,7 +17,7 @@
     }catch(e){
         console.log(e);
     }
-})()
+}
 
 /*点击未完成，已完成等按钮*/
 function switchMissionType(){

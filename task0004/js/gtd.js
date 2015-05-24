@@ -1,9 +1,14 @@
 window.onload = function(){
-
+    clickTab();
 }
 
-function clickTAb(){
-    $.delegate('#tab','click','a',function(){
-        $('#tab')
+function clickTab(){
+    $.delegate('#tab','a','click',function(){
+        addClass( $('html'),'task-show' );
+        removeClass( $('#task'),'hide-bg' );
     })
+    /*$.delegate('#task','a','click',function(){
+        addClass( $('html'),'task-show' );
+        removeClass( $('#task'),'hide-bg' );
+    })*/
 }
