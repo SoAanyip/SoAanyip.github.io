@@ -111,6 +111,7 @@ function addClass(element, newClassName) {
 // 移除dom中的样式oldClassName
 function removeClass(element, oldClassName) {
   if(!oldClassName || !element || !element.className) return;
+  if(oldClassName === '*') return element.className = '';
   var index = element.className.indexOf(oldClassName);
   if(index === -1) return;
   element.className = element.className.substring(0,index) + element.className.substring(index+oldClassName.length);

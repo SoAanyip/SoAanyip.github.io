@@ -28,37 +28,71 @@ ul{
     width: 100%;
 }
 
-.hide-bg#task{
-     z-index: -1; 
+.index-now #tab,.index-now #task,.index-show #task,.tab-from-index #task,.tab-now #task,.task-now #index{
+    z-index: -1;
 }
 
- .task-show #tab{
+.tab-from-index #index{
     overflow: hidden;
-     -webkit-transition: -webkit-transform 400ms;
+    -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-90%,0,0); 
 } 
-.task-show #task{
+.tab-from-index #tab{
     left: 100%;
     overflow: hidden;
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-90%,0,0); 
 }
+.tab-from-task #task{
+    left: 10%;
+    overflow: hidden;
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(90%,0,0);
+}
+.tab-from-task #tab{
+    left: -90%;
+    overflow: hidden;
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(100%,0,0);
+}
 
-.task-now #tab{
+.tab-now #index,.task-show #index,.task-now #tab{
     left: -90%;
 }
-.task-now #task{
+.tab-now #index ul,.task-show #index ul,.task-now #tab ul{
+    display: none;
+}
+.tab-now #tab,.task-now #task{
     left: 10%;
     width: 90%;
 }
 
-#tab{
+.task-show #tab{
+    left: 10%;
+    overflow: hidden;
+     -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(-100%,0,0);
+}
+.task-show #task{
+    left: 100%;
+    overflow: hidden;
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(-90%,0,0);  
+}
+
+
+
+#index{
     z-index: 1;
     background-color: #0cf;
 }
-#task{
+#tab{
      z-index: 2; 
     background-color: #cf0;
+}
+#task{
+    z-index: 3;
+    background-color: #c0f;
 }
 
 .one-tab{
