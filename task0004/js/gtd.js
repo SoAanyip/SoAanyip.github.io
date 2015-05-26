@@ -1,7 +1,7 @@
 window.onload = function(){
 
     initHash();
-    //clickTab();
+    touchBack();
 }
 
 
@@ -20,6 +20,8 @@ function initHash(){
         hashArr = judHash();
         packElms(hashArr);
         sectionAnimate(judHash()[0]);
+
+        getElms().lastHash = hashArr[0];
     };
 
     
@@ -92,6 +94,10 @@ function packTab(tabId,task){
     oUl.appendChild(fragment);
 }
 
+function packTask(){
+
+}
+
 /*动画切换页面*/
 function sectionAnimate(target){
     var elms = getElms();
@@ -100,8 +106,7 @@ function sectionAnimate(target){
     if(target === 'tab'){
         addClass( elms.oHtml,  target+'-from-' + elms.lastHash );
         setTimeout(function(){
-            removeClass( elms.oHtml , target+'-from-' + elms.lastHash );
-            addClass( elms.oHtml , target+'-now' );
+            elms.oHtml.className = target+'-now';
         },400)
     }else{
         addClass( elms.oHtml,  target+'-show' );
@@ -119,6 +124,41 @@ function sectionChange(target){
 
     removeClass( elms.oHtml , '*' );
     addClass( elms.oHtml,  target+'-now' );
+}
+
+
+function touchBack(){
+    var aToucToBack = document.querySelectorAll('.touch-to-back'),
+        saveTarget = undefined;
+
+    for( var i = 0 , len = aToucToBack.length ; i<len ; i++ ){
+        /*aToucToBack[i].addEventListener('click',function(){
+            var parent = this.parentNode;
+            if(parent.id === 'index') location.hash = '';
+            else if(parent.id === 'tab'){
+                location.hash = location.hash.substring( 0, location.hash.lastIndexOf('/') );
+            }
+        },false);*/
+
+
+        aToucToBack[i].addEventListener('touchstart',function(){
+            saveTarget = this;
+        },false);
+
+        aToucToBack[i].addEventListener('touchend',function(){
+            if(saveTarget){
+                var parent = saveTarget.parentNode;
+                if(parent.id === 'index') location.hash = '';
+                else if(parent.id === 'tab'){
+                    location.hash = location.hash.substring( 0, location.hash.lastIndexOf('/') );
+                }
+
+                saveTarget = undefined;
+            }
+        })
+    }
+
+    aToucToBack = null;
 }
 
 /*保存常用Dom元素*/
@@ -206,15 +246,3 @@ function _getTask(){
 }
 
 var getTask = _getTask();
-
-/*function clickTab(){
-
-    $.delegate('#tab','a','click',function(){
-        touchSwitch('task');
-    })
-    $.delegate('#tab','a','touchstart',function(){
-        touchSwitch('task');
-    })
-
-}*/
-
