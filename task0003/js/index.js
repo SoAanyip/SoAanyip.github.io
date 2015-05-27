@@ -2,7 +2,7 @@ window.onload = function(){
     /*组装分类列表*/
     createTab(true);
     
-    //GTDOnclickFunctions();
+    GTDOnclickFunctions();
 }
 
 

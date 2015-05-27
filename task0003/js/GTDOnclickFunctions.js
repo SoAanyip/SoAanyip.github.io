@@ -1,6 +1,6 @@
-window.onload = function(){
+/*window.onload = function(){
     GTDOnclickFunctions();
-}
+}*/
 /*配置点击事件*/
 function GTDOnclickFunctions(){
     try{
