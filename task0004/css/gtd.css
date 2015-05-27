@@ -137,3 +137,12 @@ ul{
     height: 100%;
     cursor: pointer;
 }
+
+#task-name,#task-time{
+    margin:.5em 0 1em;
+    text-align: center;
+    font-size: 1.3em;
+}
+#task-text{
+    padding: .5em;
+}
