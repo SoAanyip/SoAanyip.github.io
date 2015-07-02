@@ -1,3 +1,4 @@
+/* normal */
 html{
 	font-family:'helvetica neue', arial,'hiragino sans gb', stheiti,'microsoft yahei', 'wenquanyi micro hei',sans-serif;
 	font-size: 16px;
@@ -46,6 +47,17 @@ a:hover,a:active{
 li{
 	list-style: none;
 }
+
+h1.title{
+	font-size: 3rem;
+	text-shadow:2px 2px 1px #bbb;
+}
+img{
+	border:5px solid #eee;
+}
+/* normal end */
+
+/* background */
 #bg{
 	position: absolute;
 	/* position: fixed;*/
@@ -55,12 +67,11 @@ li{
 	height: 100%;
 	z-index: -101;
 }
-h1.title{
-	font-size: 3rem;
-	text-shadow:2px 2px 1px #bbb;
-}
+/* background end */
+
+/* basic msg */
 #myBasicMeg{
-	margin: 0 auto;
+	margin: 0 auto 10rem;
 }
 #myBasicMeg .photo{
 	float: left;
@@ -72,10 +83,9 @@ h1.title{
 	margin-left: 10%;
 	font-size: 1.4rem;
 }
+/* base msg end */
 
-img{
-	border:5px solid #eee;
-}
+/* projects */
 .photo{
 	width: 200px;
 	height: 200px;
@@ -90,6 +100,7 @@ img{
 .project{
 	float: left;
 	width: 100%;
+	margin-bottom: 4rem;
 }
 .project p{
 	line-height: 1.5rem;
@@ -107,6 +118,9 @@ img{
 	font-size: 1.6rem;
 	margin: 1rem 0;
 }
+/* projects end */
+
+/* sections */
 .subtitle{
 	font-size: 1.4rem;
 	font-weight: bold;
@@ -135,6 +149,9 @@ section li{
 	margin-top:1rem;
 	text-shadow:1.4px 1.4px 1px #aaa;
 }
+/* sections end */
+
+/* skill */
 .skillFirst{
 	font-weight: 900;
 	color: #f60;
@@ -169,19 +186,25 @@ section li{
 		padding-right: 2rem;
 	}
 }
+/* skill end */
+
 #desc p{
 	line-height: 1.5rem;
 	text-indent: 2rem;
 
 }
 
+#thanks{
+	padding-bottom: 200px;
+}
+
 .clearfix:before,.clearfix:after {
     content: " "; 
     display: table; 
 }
-.clearfix {
-    *zoom: 1;
-}
 .clearfix:after {
     clear: both;
+}
+.clearfix {
+    *zoom: 1;
 }
