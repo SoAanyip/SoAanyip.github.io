@@ -1,0 +1,1 @@
+{"res":{"css/gtd.css":{"uri":"/css/gtd.css","type":"css"},"js/gtd.js":{"uri":"/js/gtd.js","type":"js","pkg":"p0"},"js/util.js":{"uri":"/js/util.js","type":"js","pkg":"p0"}},"pkg":{"p0":{"uri":"/pkg/lib.js","type":"js","has":["js/gtd.js","js/util.js"]}}}

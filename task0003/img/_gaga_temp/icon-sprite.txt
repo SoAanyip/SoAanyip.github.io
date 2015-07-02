@@ -1,0 +1,6 @@
+icon-finish.png, 30, 30, 0, 0
+icon-write.png, 30, 30, 32, 0
+icon-delete.png, 20, 20, 64, 0
+icon-file.png, 20, 20, 90, 0
+icon-folder.png, 20, 20, 116, 0
+icon-plus.png, 20, 20, 142, 0

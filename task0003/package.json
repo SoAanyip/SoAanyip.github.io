@@ -1,0 +1,21 @@
+{
+  "name": "task0003",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "chokidar": "^1.0.1",
+    "postcss": "^4.1.11",
+    "cssgrace": "^2.0.2"
+  },
+  "devDependencies": {
+    "chokidar": "^1.0.1",
+    "cssgrace": "^2.0.2",
+    "postcss": "^4.1.11"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "So Aanyip",
+  "license": "MIT"
+}

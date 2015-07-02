@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GTD Tools</title>
-    <link rel="stylesheet" href="css/index.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        GTD Tools
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+
+
 </head>
 <body>
     <header>
@@ -13,10 +18,12 @@
         </div>
     </header>
     <menu>
-        <div>
+        <div class="tab-wrap">
             <div id="tabulation">
                 <h2 id="tab-title">分类列表</h2>
-                <div id="all-mission">所有任务(0)</div>
+                <div id="all-mission">
+                    所有任务(0)
+                </div>
                 <ul id="tab-ul">
                     <!-- <li class="tab-tree-li">
                         <div>百度IFE项目<span class="delete-folder"></span></div>
@@ -51,7 +58,7 @@
                 </ul>
             </div>
             <div class="add-at-bottom">
-                <a href="javascript:" id="add-tab">新增分类</a>
+                <a class="add-at-bottom-link" href="javascript:" id="add-tab">新增分类</a>
             </div>
         </div>
     </menu>
@@ -94,7 +101,7 @@
             </ol>
         </div>
         <div class="add-at-bottom">
-            <a href="javascript:" id="add-mission">新增任务</a>
+            <a class="add-at-bottom-link" href="javascript:" id="add-mission">新增任务</a>
         </div>
     </div>
     <div id="mission-cont">
@@ -106,13 +113,15 @@
             <a href="javascript:" class="word-btn" id="save-edit">保存修改</a>
         </div>
         <div id="cont-mission-time">
-            任务日期：<span></span>
+             任务日期：
+            <span></span>
         </div>
         <div id="cont-mission-body">
         </div>
     </div>
-    <script src="js/util.js"></script>
+    <!--<script src="js/util.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/GTDOnclickFunctions.js" defer="defer"></script>
+    <script src="js/GTDOnclickFunctions.js"></script>-->
+    <script data-main="js/main" src="/js/ref/require.js"></script>
 </body>
 </html>
