@@ -1,0 +1,339 @@
+//colors
+@header-grey : rgb(221,221,221);
+@header-title-gray : rgb(144,144,144);
+@section-bg-gray : rgb(242,242,242);
+@selected-font-green : rgb(106,187,66);
+@border-color : #ccc;
+@mission-time-bg-pink:rgb(250,250,238);
+
+//width and height
+@section-width: 230px;
+@min-height : 400px;
+@whole-page-min-width: 860px;
+
+//fonts
+@root-font-size:14px;
+
+//functions
+//border-radius
+.border-radius(@r){
+    -webkit-border-radius: @r;
+    -moz-border-radius: @r;
+    border-radius: @r;
+}
+//height and the same line-height
+.height-and-line(@h){
+    height: @h;
+    line-height: @h;
+}
+
+//css-sprite-icons
+.css-sprite-icons(@w,@h,@l,@t){
+    width: @w;
+    height: @h;
+    vertical-align: middle;
+    background-position: @l @t;
+    background-image: url("/img/icon-sprite.png");
+    background-repeat: no-repeat;
+
+}
+
+/* common */
+article,footer,header,menu,nav,section{
+    display: block;
+}
+html{
+    position: relative;
+    height: 100%;
+    font-size: @root-font-size;
+}
+body{
+    height: 100%;
+    margin: 0;
+    font-family:'helvetica neue', arial,'hiragino sans gb', stheiti,'microsoft yahei', 'wenquanyi micro hei',sans-serif;
+}
+
+/* header */
+#header-cont{
+    position: relative;
+    height: 60px;
+    min-width: @whole-page-min-width;
+    overflow: hidden;
+    background-color: @header-grey;
+}
+#header-title{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.6em;
+    height: 100%;
+    font-size: 1.6em;
+    color: @header-title-gray;
+}
+
+/* menu */
+menu{
+    margin: 0;
+    padding: 0;
+}
+.tab-wrap,#mission-side{
+    position: absolute;
+    top:60px;
+    bottom: 0;
+    width: @section-width;
+    min-height: @min-height;
+    border-top: 1px solid @border-color;
+    border-right: 1px solid @border-color;
+    box-sizing:border-box;
+    background-color: @section-bg-gray;
+}
+
+#tab-title{
+    font-size: 1em;
+}
+#all-mission{
+    margin: 1.5em 0 1em 1em;
+    cursor: pointer;
+}
+#tabulation{
+    padding-left: 1em;
+    box-sizing:border-box;
+    ul{
+        padding-left: 0;
+        margin: .4em 0 .4em .5em;
+    }
+}
+#tab-ul{
+    li{
+        list-style: none;
+        margin-left: .5em;
+        cursor: pointer;
+        &:before{
+            display: inline-block;
+            .css-sprite-icons(20px,20px,-90px,0);
+            content: "";
+        }
+    }
+    .tab-tree-li{
+        background: none;
+        cursor: default;
+        &:hover{
+            color:#000;
+        }
+        &:before{
+            display: none;
+        }
+    }
+}
+.folder-name{
+    margin: 0;
+    padding: .5em 0 0 .2em;
+    cursor: pointer;
+    &:before{
+        display: inline-block;
+        .css-sprite-icons(20px,20px,-116px,0);
+        content: "";
+    }
+}
+
+.folder-name:hover , #tab-ul li:hover{
+    color:@selected-font-green;
+}
+.folder-name:hover > .delete-folder{
+    visibility: visible;
+}
+
+.delete-folder{
+    float: right;
+    margin-right: 1em;
+    .css-sprite-icons(20px,20px,-64px,0);
+    visibility: hidden;
+}
+
+.add-at-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .height-and-line(40px);
+    border-top: 1px solid @border-color;
+    text-indent: 4em;
+    font-size: .9em;
+    background-color: @section-bg-gray;
+}
+.add-at-bottom-link{
+    display: block;
+    text-decoration: none;
+    color: #000;
+    &:before{
+        display: inline-block;
+        .css-sprite-icons(20px,20px,-142px,0);
+        content: "";
+    }
+}
+
+/* mission-side */
+#mission-side{
+    left: 230px;
+    background-color: #fff;
+}
+
+#mission-type{
+    .height-and-line(40px);
+    border-bottom: 1px solid @border-color;
+    text-align: center;
+    background-color: @section-bg-gray;
+
+    & > a{
+        display: inline-block;
+        padding: .2em .6em;
+        border:none;
+        line-height: 1;
+        text-decoration: none;
+        color:#000;
+        font-size: .9em;
+        &.type-active{
+            border: 1px solid @border-color;
+            .border-radius(5px);
+            background-color: #fff;
+        }
+    }
+}
+
+/* mission-timeline */
+
+#mission-timeline{
+    ol{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        dl{
+            margin: 0;
+            & dt , & dd{
+                .height-and-line(26px);
+                box-sizing:border-box;
+            }
+
+            dt{
+                padding-left: 1em;
+                background-color: @mission-time-bg-pink;
+            }
+            dd{
+                margin-left: 0;
+                padding-left: 2em;
+                cursor: pointer;
+                &:hover{
+                    background-color:@section-bg-gray;
+                }
+            }
+        }
+    }
+}
+
+.font-active{
+    color:@selected-font-green;
+}
+
+/* mission-cont */
+#mission-cont{
+    position: absolute;
+    top:60px;
+    bottom: 0;
+    left: 460px;
+    right: 0;
+    min-width: 400px;
+    min-height: @min-height;
+    border-top: 1px solid @border-color;
+    background-color: #fff;
+}
+#cont-title-bar{
+    height: 50px;
+    border-bottom: 1px solid @border-color;
+    background-color: @section-bg-gray;
+}
+
+#cont-title-bar h2{
+    display: inline-block;
+    .height-and-line(50px);
+    margin: 0;
+    font-size: 1.2em;
+    text-indent: 1em;
+}
+
+.icon-btn{
+    display: none;
+    float: right;
+    margin: 10px 16px 0 0;
+    border:none;
+}
+.word-btn{
+    border:0;
+    border-bottom: 2px solid #000;
+    font-size: 1em;
+    text-decoration: none;
+    color: #000;
+    
+    &:hover , &:active{
+        color: @selected-font-green;
+        border-bottom: 2px solid @selected-font-green;
+    }
+}
+#save-edit,#cancel-edit{
+    display: none;
+    float: right;
+    margin: 16px 16px 0px 0px;
+}
+
+#edit-mission{
+    .css-sprite-icons(30px,30px,-32px,0);
+    /* background: url("../img/icon-write.png") no-repeat; */
+}
+#finish-mission{
+    .css-sprite-icons(30px,30px,0,0);
+    /* background: url("../img/icon-finish.png") no-repeat; */
+}
+#cont-mission-time{
+    .height-and-line(50px);
+    border-bottom: 1px solid @border-color;
+    text-indent: 1em;
+    background-color: @mission-time-bg-pink;
+}
+#cont-mission-time span{
+    display: inline-block;
+}
+#cont-mission-body{
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    width: 100%;
+    padding: .8em;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+#cont-mission-body p{
+    margin: .5em 0;
+}
+#cont-mission-body.mission-editing{
+    padding: 0;
+    overflow-y: hidden;
+}
+
+/* 编辑中的任务 */
+#mission-cont input,#mission-cont textarea{
+    font: inherit;
+}
+#mission-cont input{
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: inherit;
+    border:0;
+}
+#cont-mission-edit{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: .8em;
+    box-sizing: border-box;
+}
