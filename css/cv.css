@@ -188,10 +188,9 @@ section li{
 }
 /* skill end */
 
-#desc p{
+#desc p,#internship p{
 	line-height: 1.5rem;
 	text-indent: 2rem;
-
 }
 
 #thanks{
