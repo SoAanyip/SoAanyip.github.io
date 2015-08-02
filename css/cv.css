@@ -192,6 +192,9 @@ section li{
 	line-height: 1.5rem;
 	text-indent: 2rem;
 }
+#desc .subtitle,#internship .subtitle{
+	text-indent: 0;
+}
 
 #thanks{
 	padding-bottom: 200px;
