@@ -130,6 +130,9 @@ img{
 	width:50%;
 	margin-top:2rem;
 }
+.subProject .subtitle{
+	text-indent: 0;
+}
 @media (max-width: 900px){
 	.subProject{
 		width:100%;
