@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solar System</title>
+</head>
+<body onload="init()">
+    <canvas width="1200" height="600" id="main"></canvas>
+
+
+    <script src="../resource/three.js"></script>
+    <script src="../resource/stats.min.js"></script>
+    <script src="../resource/firstPersonControl.js"></script>
+    <script>
+        var scene, renderer, camera, backdrop, stat, control;
+
+        var cameraFar = 1500;
+
+        var sun,
+            Mercury,  //水星
+            Venus,  //金星
+            Earth,
+            Mars,
+            Jupiter, //木星
+            Saturn, //土星
+            Uranus, //天王
+            Neptune, //海王
+            stars = [];
+
+        var clock = new THREE.Clock();
+
+        var show = document.getElementById('show');
+
+        function init(){
+            /*stats帧率统计*/
+            stat = new Stats();
+            stat.domElement.style.position = 'absolute';
+            stat.domElement.style.right = '0px';
+            stat.domElement.style.top = '0px';
+            document.body.appendChild(stat.domElement);
+
+            /*renderer*/
+            renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('main')
+            });
+            renderer.shadowMap.enabled = true; //辅助线
+            renderer.shadowMapSoft = true; //柔和阴影
+            renderer.setClearColor(0xffffff, 0);
+
+            /*scene*/
+            scene = new THREE.Scene();
+
+            /*camera*/
+            camera = new THREE.PerspectiveCamera(45,2,1,cameraFar);
+            camera.position.set(-200,100,0);
+            camera.lookAt(new THREE.Vector3(0,0,0));
+            scene.add(camera);
+
+            /*sunLight pic*/
+            var sunLightPic = THREE.ImageUtils.loadTexture('../img/sunCore.jpg', {}, function() {
+                renderer.render(scene, camera);
+            });
+
+            /*sun*/
+            sun = new THREE.Mesh( new THREE.SphereGeometry( 12 ,16 ,16 ),
+                new THREE.MeshLambertMaterial({
+                    /*color: 0xffff00,*/
+                    emissive: 0xdd4422,
+                    map: sunLightPic
+                }) 
+            );
+            //sun.rotation.y = ( - Math.PI / 4 )-2*Math.PI;
+            sun.castShadow = true;
+            sun.receiveShadow = true;
+            scene.add(sun);
+
+            /*opacity sun*/
+            var opSun = new THREE.Mesh( new THREE.SphereGeometry( 14 ,16 ,16 ),
+                new THREE.MeshLambertMaterial({
+                    color: 0xff0000,
+                    /*emissive: 0xdd4422,*/
+                    transparent:true,
+                    opacity: .35
+                }) 
+            );
+
+            scene.add(opSun);
+
+
+            /*stars*/
+            Mercury = initPlanet(0.02,0,'rgb(124,131,203)',20,2);
+            stars.push(Mercury);
+
+            Venus = initPlanet(0.012,0,'rgb(190,138,44)',30,4);
+            stars.push(Venus);
+
+            Earth = initPlanet(0.010,0,'rgb(46,69,119)',40,5);
+            stars.push(Earth);
+
+            Mars = initPlanet(0.008,0,'rgb(210,81,16)',50,4);
+            stars.push(Mars);
+
+            Jupiter = initPlanet(0.006,0,'rgb(254,208,101)',70,9);
+            stars.push(Jupiter);
+
+            Saturn = initPlanet(0.005,0,'rgb(210,140,39)',100,7,{
+                color:'rgb(136,75,30)',
+                innerRedius:9,
+                outerRadius:11
+            });
+            stars.push(Saturn);
+
+            Uranus = initPlanet(0.003,0,'rgb(49,168,218)',120,4);
+            stars.push(Uranus);
+
+            Neptune = initPlanet(0.002,0,'rgb(84,125,204)',150,3);
+            stars.push(Neptune);
+
+            //环境光
+            var ambient = new THREE.AmbientLight(0x999999);
+            scene.add(ambient);
+
+            /*太阳光*/
+            var sunLight = new THREE.PointLight(0xddddaa,1.5,500);
+            scene.add(sunLight);
+
+            
+            /*背景星星*/
+            var particles = 10000;
+            var bufferGeometry = new THREE.BufferGeometry();
+
+            var positions = new Float32Array( particles * 3 );
+            var colors = new Float32Array( particles * 3 );
+
+            var color = new THREE.Color();
+
+            var n = 500, n2 = n / 2; // particles spread in the cube
+
+            for ( var i = 0; i < positions.length; i += 3 ) {
+
+                // positions
+
+                var x = ( Math.random() * n *2 )* (Math.random()<.5? -1 : 1);
+                var y = ( Math.random() * n *2 )* (Math.random()<.5? -1 : 1);
+                var z = ( Math.random() * n *2 )* (Math.random()<.5? -1 : 1);
+
+                var biggest = Math.abs(x) > Math.abs(y) ? Math.abs(x) > Math.abs(z) ?　'x' : 'z' : 
+                    Math.abs(y) > Math.abs(z) ? 'y' : 'z';
+
+                var pos = {
+                    x : x,
+                    y : y,
+                    z : z
+                }
+
+                if(Math.abs(pos[biggest]) < 500) pos[biggest] = pos[biggest] < 0 ? -500 : 500;
+
+                x = pos['x'];
+                y = pos['y'];
+                z = pos['z'];
+
+                positions[ i ]     = x;
+                positions[ i + 1 ] = y;
+                positions[ i + 2 ] = z;
+
+
+
+                // colors
+
+                /*var vx = ( Math.abs(x) / n*2 ) ;
+                var vy = ( Math.abs(y) / n*2 ) ;
+                var vz = ( Math.abs(z) / n*2 ) ;*/
+                var vx = ( 1 ) ;
+                var vy = ( 1 ) ;
+                var vz = ( 1 ) ;
+
+                color.setRGB( vx, vy, vz );
+
+                colors[ i ]     = color.r;
+                colors[ i + 1 ] = color.g;
+                colors[ i + 2 ] = color.b;
+
+            }
+
+            bufferGeometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+            bufferGeometry.addAttribute( 'color', new THREE.BufferAttribute( colors, 3 ) );
+
+            bufferGeometry.computeBoundingSphere();
+
+            //
+
+            var material = new THREE.PointsMaterial( { size: 6, vertexColors: THREE.VertexColors } );
+
+            particleSystem = new THREE.Points( bufferGeometry, material );
+            scene.add( particleSystem );
+
+
+
+            /*镜头控制*/
+            control = new THREE.FirstPersonControls( camera );
+            control.movementSpeed = 100;
+            control.lookSpeed = 0.125;
+            control.lookVertical = true;
+            control.limitCube = 400;
+
+            camera.lookAt(new THREE.Vector3(0,0,0));
+
+            renderer.render(scene,camera);
+
+            requestAnimationFrame(move);
+        }
+
+        /**
+         * 初始化行星
+         * @param  {[type]} speed    [description]
+         * @param  {[type]} angle    [description]
+         * @param  {[type]} color    [description]
+         * @param  {[type]} distance [description]
+         * @param  {[type]} volume   [description]
+         * @param  {[type]} ringMsg  [description]
+         * @return {[type]}          [description]
+         */
+        function initPlanet(speed,angle,color,distance,volume,ringMsg){
+            var mesh = new THREE.Mesh( new THREE.SphereGeometry( volume, 16,16 ),
+                new THREE.MeshLambertMaterial( {color: color} ) 
+            );
+            mesh.position.x = distance;
+            mesh.receiveShadow = true;
+            mesh.castShadow = true;
+
+            /*轨道*/
+            var track = new THREE.Mesh( new THREE.RingGeometry(distance-0.2, distance+0.2, 64,1),
+                new THREE.MeshBasicMaterial( { color: 0x888888, side: THREE.DoubleSide } )
+            );
+            track.rotation.x = - Math.PI / 2;
+            scene.add(track);
+
+            var star = {
+                Mesh : mesh,
+                speed : speed,
+                angle : angle,
+                distance : distance
+            }
+
+            /*如果有碎星带*/
+            if(ringMsg){
+                var ring = new THREE.Mesh( new THREE.RingGeometry(ringMsg.innerRedius, ringMsg.outerRadius, 32, 6),
+                new THREE.MeshBasicMaterial( { color: ringMsg.color, side: THREE.DoubleSide, opacity:.7, transparent:true } )
+                );
+                ring.rotation.x = - Math.PI / 3;
+                ring.rotation.y = - Math.PI / 4;
+                scene.add(ring);
+
+                star.ring = ring;
+            }
+
+            
+            scene.add(mesh);
+
+            return star;
+        }
+
+        /*行星移动*/
+        function move(){
+            //stat.begin();
+            
+            for(var i = 0; i< stars.length; i++){
+                moveEachStar(stars[i]);
+            }
+            sun.rotation.y = sun.rotation.y
+
+            renderer.render(scene,camera);
+            requestAnimationFrame(move);
+
+            control.update( clock.getDelta() );
+
+
+            camera.position.x = THREE.Math.clamp( camera.position.x, -400, 400 );
+            camera.position.y = THREE.Math.clamp( camera.position.y, -400, 400 );
+            camera.position.z = THREE.Math.clamp( camera.position.z, -400, 400 );
+
+            stat.update();
+        }
+
+        function moveEachStar(star){
+            star.angle+=star.speed;
+            if (star.angle > Math.PI * star.distance) {
+                star.angle -= Math.PI * star.distance;
+            }
+
+            sun.rotation.y = (sun.rotation.y == 2*Math.PI ? 0.0001*Math.PI : sun.rotation.y+0.0001*Math.PI);
+ 
+            star.Mesh.position.set(star.distance * Math.sin(star.angle), 0, star.distance * Math.cos(star.angle));
+
+            if(star.ring){
+                star.ring.position.set(star.distance * Math.sin(star.angle), 0, star.distance * Math.cos(star.angle));
+            }
+        }
+
+        /*键盘监听*/
+        function onkeydown(ev){
+            var code = ev.which || ev.keyCode;
+            if(code == 87){
+                /*camera.position*/
+            }
+            console.log(ev.which);
+        }
+
+
+        /*function backdropStars(num,minLimit){
+
+            for(var i = 0; i<num; i++){
+                var radius = Math.random()*1+.5;
+                var mesh = new THREE.Mesh( new THREE.SphereGeometry( radius, 16,16 ),
+                    new THREE.MeshLambertMaterial( {color: 0xffffff} )
+                );
+                var x = getRandomPosition(),
+                    y = getRandomPosition(),
+                    z = getRandomPosition(),
+                    position = {
+                        x:x,
+                        y:y,
+                        z:z
+                    }
+
+                var biggest = Math.abs(x) > Math.abs(y) ? Math.abs(x) > Math.abs(z) ?　'x' : 'z' : 
+                    Math.abs(y) > Math.abs(z) ? 'y' : 'z';
+
+
+
+                position[biggest] = position[biggest] < 0? -200 : 200;
+
+
+                mesh.position.set(position.x,position.y,position.z);
+                mesh.receiveShadow = true;
+                mesh.castShadow = true;
+                scene.add(mesh);
+            };
+            
+
+            function getRandomPosition(){
+                return ( Math.random()*minLimit ) * (Math.random()<.5? -1 : 1);
+            }
+            
+        }*/
+
+    </script>
+</body>
+</html>
