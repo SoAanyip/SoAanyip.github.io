@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="index-now">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>Hear`s site</title>
+
+    <link rel="stylesheet" href="./node_modules/frozen/css/frozen.css">
+
+    <style>
+        .name-cont{
+            height: 150px;
+        }
+        .about-desc{
+            color:#999;
+        }
+        .head-pic{
+            border-radius: 50%
+        }
+        .ui-tab-content > li{
+            min-height: 300px;
+        }
+
+
+        .photo-list{
+        }
+        .photo-list .ui-row-flex{
+            margin-top: 20px;
+        }
+        .photo-desc{
+            height: 72px;
+            margin-top: 5px;
+            -webkit-line-clamp:3;
+        }
+        .story-list{
+            margin-bottom: 10px;
+        }
+        .story-title{
+            height: 50px;
+        }
+        .single-story{
+            margin-top: 40px;
+        }
+        .story-content{
+            word-break: break-all;
+            -webkit-line-clamp:5;
+            color:#666;
+        }
+        .open-story-btn{
+            margin-top:10px;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui-tab">
+        <ul class="ui-tab-nav ui-border-b">
+            <li class="current">about</li>
+            <li>photo</li>
+            <li>story</li>
+        </ul>
+        <ul class="ui-tab-content" style="width:300%">
+            <li id="about-box">
+                <div class="ui-flex ui-flex-align-center ui-flex-pack-center ui-flex-ver name-cont">
+                    <img class="head-pic" src="{headPicUrl}" alt="{name}">
+                    <h1>{name}</h1>
+                    <div class="about-desc">{desc}</div> 
+                </div>
+                
+                <div class="ui-flex ui-flex-pack-center">
+                    <div class="ui-label-list">
+                        {interest}
+                    </div>
+                </div>
+            </li>
+            <li id="photo-box">
+                <ul class="photo-list">
+                    {photo}
+                </ul>
+            </li>
+            <li id="story-box">
+                <ul class="story-list">
+                    {story}
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./node_modules/zepto/zepto.min.js"></script>
+    <script src="./node_modules/frozen/js/frozen.js"></script>
+
+    <script>
+        initTab();
+        function initTab(){
+            var tab = new fz.Scroll('.ui-tab', {
+                role: 'tab'
+            });
+            tab.indexData = {};
+
+            /* 滑动开始前 */
+            tab.on('beforeScrollStart', function(from, to) {
+                console.log('before',from,to)
+                if(from == to) return;
+                if(!tab.indexData[to]){
+                    getIndexData(to,fillTab);
+                }else{
+                    fillTab(to);
+                }
+            })
+
+            /* 滑动结束 */
+            tab.on('scrollEnd', function(curPage) {
+                location.hash='/'+curPage;
+
+            });
+
+            /*从location获得初始index*/
+            var currentIndex = location.hash.substring(location.hash.indexOf('/')+1);
+            if(currentIndex == '') currentIndex = 0;
+            if(currentIndex != 0){
+                console.log(currentIndex);
+                changeTab(currentIndex);
+            }
+
+            getIndexData(currentIndex,fillTab);
+
+            function changeTab(index){
+                var prevIndex = tab.currentPage;
+                tab.currentPage = index;
+                /*移除上一个index的样式*/
+                $(tab.nav.children[prevIndex],tab.scroller.children[prevIndex]).removeClass('current');
+                $(tab.scroller.children[prevIndex]).height(0); 
+                /*增加现在index的样式*/
+                $(tab.nav.children[tab.currentPage],tab.scroller.children[tab.currentPage]).addClass('current');
+                $(tab.scroller.children[tab.currentPage]).height('auto'); 
+                tab.scrollTo(-tab.itemWidth*tab.currentPage,0);
+
+                //上面是切换到第二个
+                //$('.ui-tab-content>li').eq(1).append(" <b class='ui-center'>Hello world!</b><b class='ui-center'>Hello world!</b><b class='ui-center'>Hello world!</b><b class='ui-center'>Hello world!</b>");
+            }
+
+            function fillTab(index,data){
+                if(data && !tab.indexData[index]) tab.indexData[index] = data;
+
+                if(!data) data = tab.indexData[index];
+
+                var fillOption = {
+                    0: function(data){
+                        var box = document.getElementById('about-box');
+                        var string = box.innerHTML;
+
+                        var DOMList = '',
+                            option = {};
+                        $.extend(option,data);
+
+                        for (var i = 0, len = data.interest.length; i < len ; i++) {
+                            var interestString = 
+                                '<label class="ui-label">'+data.interest[i]+'</label>';
+                            DOMList += interestString;
+                        };
+                        option.interest = DOMList;
+
+
+                        var rpl = tplEngine(string,option);
+                        box.innerHTML = rpl;
+                    },
+                    1: function(data){
+                        var box = document.getElementById('photo-box');
+                        var string = box.innerHTML;
+
+                        var DOMList = '',
+                            option = {};
+                        $.extend(option,data);
+
+                        for (var i = 0, len = data.photo.length; i < len ; i++) {
+                            var single = 
+                                '<li class="ui-row-flex ui-whitespace">\
+                                    <div class="ui-col ui-col-1">\
+                                        <img src="'+data.photo[i].url+'" alt="">\
+                                    </div>\
+                                    <div class="photo-desc ui-col ui-col-2 ui-nowrap-multi ui-whitespace"\
+                                    >'+data.photo[i].desc+'\
+                                    </div>\
+                                </li>';
+                            DOMList += single;
+                        };
+                        option.photo = DOMList;
+
+
+                        var rpl = tplEngine(string,option);
+                        box.innerHTML = rpl;
+                    },
+                    2: function(data){
+                        var box = document.getElementById('story-box');
+                        var string = box.innerHTML;
+
+                        var DOMList = '',
+                            option = {};
+                        $.extend(option,data);
+
+                        for (var i = 0, len = data.story.length; i < len ; i++) {
+                            var single = 
+                                '<li class="single-story">\
+                                    <div class="ui-flex ui-flex-pack-center ui-flex-align-center story-title">\
+                                        <h1 class="ui-nowrap">'+data.story[i].title+'</h1>\
+                                    </div>\
+                                    <p class="story-content ui-whitespace ui-nowrap-multi">'+data.story[i].content+'</p>\
+                                    <div class="ui-flex ui-flex-pack-center">\
+                                        <button class="ui-btn-s open-story-btn">\
+                                            展开\
+                                        </button>\
+                                    </div>\
+                                </li>';
+                            DOMList += single;
+                        };
+                        option.story = DOMList;
+
+
+                        var rpl = tplEngine(string,option);
+                        box.innerHTML = rpl;
+                    }
+                }
+
+                fillOption[index](data);
+
+            }
+        }
+
+        function getIndexData(index,callback){
+            var dataHash = {
+                0: 'about',
+                1: 'photo',
+                2: 'story'
+            }
+
+            $.ajax({
+                type:'GET',
+                url:'./data/'+dataHash[index]+'.json',
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    callback(index,data);
+                }
+            })
+        }
+
+
+        /**
+         * 模板字符窜
+         * @param  {string} string 模板字符串
+         * @param  {Object} option 参数对象
+         * @return {string}        构造好的字符串
+         */
+        function tplEngine(string,option){
+            for (var single in option){
+                string = string.replace(new RegExp('{' + single + '}', 'g'), option[single]);
+            }
+            return string;
+        }
+    </script>
+</body>
+</html>
