@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="./node_modules/frozen/css/frozen.css">
 
     <style>
+        #nav-back{
+            height: 45px;
+            display: none;
+        }
         .name-cont{
             height: 150px;
         }
@@ -25,24 +29,36 @@
         }
 
 
-        .photo-list{
+        #photo-box{
+            margin-top: 20px;
         }
         .photo-list .ui-row-flex{
             margin-top: 20px;
+        }
+        .photo-list .ui-row-flex:first-child{
+            margin-top: 0
         }
         .photo-desc{
             height: 72px;
             margin-top: 5px;
             -webkit-line-clamp:3;
         }
-        .story-list{
-            margin-bottom: 10px;
+        #story-box{
+            margin-bottom: 50px;
         }
         .story-title{
             height: 50px;
         }
         .single-story{
             margin-top: 40px;
+        }
+        .single-story:first-child{
+            margin-top: 20px;
+        }
+        .story-content-wrap{
+            overflow: hidden;
+            transition: all .5s ease-out 0s;
+            -webkit-transition: all .5s ease-out 0s;
         }
         .story-content{
             word-break: break-all;
@@ -57,11 +73,12 @@
 </head>
 <body>
     <div class="ui-tab">
-        <ul class="ui-tab-nav ui-border-b">
-            <li class="current">about</li>
-            <li>photo</li>
-            <li>story</li>
+        <ul id="top-nav" class="ui-tab-nav ui-border-b">
+            <li class="current">About</li>
+            <li>Photo</li>
+            <li>Story</li>
         </ul>
+        <div id="nav-back"></div>
         <ul class="ui-tab-content" style="width:300%">
             <li id="about-box">
                 <div class="ui-flex ui-flex-align-center ui-flex-pack-center ui-flex-ver name-cont">
@@ -94,6 +111,10 @@
 
     <script>
         initTab();
+        fixedNav();
+        addEvents();
+
+
         function initTab(){
             var tab = new fz.Scroll('.ui-tab', {
                 role: 'tab'
@@ -207,9 +228,13 @@
                                     <div class="ui-flex ui-flex-pack-center ui-flex-align-center story-title">\
                                         <h1 class="ui-nowrap">'+data.story[i].title+'</h1>\
                                     </div>\
-                                    <p class="story-content ui-whitespace ui-nowrap-multi">'+data.story[i].content+'</p>\
+                                    <div class="story-content-wrap">\
+                                        <p class="story-content ui-whitespace ui-nowrap-multi"\
+                                            data-sid="'+data.story[i].sid+'"\
+                                        >'+data.story[i].content+'</p>\
+                                    </div>\
                                     <div class="ui-flex ui-flex-pack-center">\
-                                        <button class="ui-btn-s open-story-btn">\
+                                        <button class="ui-btn-s open-story-btn" data-trigger-sid="'+data.story[i].sid+'" data-toggle="false">\
                                             展开\
                                         </button>\
                                     </div>\
@@ -247,6 +272,19 @@
             })
         }
 
+        function fixedNav(){
+            var canFixed = isSupportFixed();
+
+            if(canFixed){
+                var $nav = $('#top-nav');
+                $nav.css({
+                    position:'fixed',
+                    zIndex:'10',
+                    top:'0'
+                })
+                $('#nav-back').css({display:'block'})
+            }
+        }
 
         /**
          * 模板字符窜
@@ -259,6 +297,56 @@
                 string = string.replace(new RegExp('{' + single + '}', 'g'), option[single]);
             }
             return string;
+        }
+
+        function isSupportFixed() {
+            var userAgent = window.navigator.userAgent, 
+                ios = userAgent.match(/(iPad|iPhone|iPod)\s+OS\s([\d_\.]+)/),
+                ios5below = ios && ios[2] && (parseInt(ios[2].replace(/_/g, '.'), 10) < 5),
+                operaMini = /Opera Mini/i.test(userAgent),
+                body = document.body,
+                div, isFixed;
+
+            div = document.createElement('div');
+            div.style.cssText = 'display:none;position:fixed;z-index:100;';
+            body.appendChild(div);
+            isFixed = window.getComputedStyle(div).position == 'fixed';
+            body.removeChild(div);
+            div = null;
+
+
+            return !!(isFixed || ios5below || operaMini);
+        }
+
+        function addEvents(){
+            $('#story-box').on('tap','.open-story-btn',function(e){
+                var $target = $(e.target);
+                var sid = $target.data('triggerSid');
+                var $p = $('p.story-content[data-sid="'+sid+'"]');
+                var $pWrap = $p.parent();
+                $pWrap.css({height: $p.css('height')})
+
+                var isOpen = $target.data('toggle');
+                if(!isOpen){
+                    $pWrap.data('prevHeight',$p.css('height'));
+                    window.prevScroll = window.scrollY;
+
+                    $p.removeClass('ui-nowrap-multi');
+                    $pWrap.css({height: $p.css('height')})
+                    $target.data('toggle',true)
+                    $target.html('收起');
+                }else{
+                    window.scrollTo(0,window.prevScroll);
+                    $pWrap.css({height: $pWrap.data('prevHeight')});
+
+                    setTimeout(function(){
+                        $p.addClass('ui-nowrap-multi');
+                    },500)
+                    $target.data('toggle',false);
+                    $target.html('展开')
+                }
+                
+            })
         }
     </script>
 </body>
