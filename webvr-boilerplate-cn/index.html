@@ -45,7 +45,7 @@ WebVRConfig = {
   //K_FILTER: 0.98, // Default: 0.98.
 
   // How far into the future to predict during fast motion.
-  //Given an orientation and the gyroscope data, predicts the future orientation of the head. This makes rendering appear faster
+  //由于有给定的方向以及陀螺仪信息，选择允许预测多长时间之内的设备方向，在设备快速移动的情况下可以让渲染比较流畅。
   //PREDICTION_TIME_S: 0.040, // Default: 0.040 (in seconds).
 
   // Flag to disable touch panner. In case you have your own touch controls
@@ -62,6 +62,8 @@ WebVRConfig = {
   // Scales the recommended buffer size reported by WebVR, which can improve
   // performance. Making this very small can lower the effective resolution of
   // your scene.
+  
+  //https://github.com/borismus/webvr-polyfill/pull/106
   BUFFER_SCALE: 0.5, // default: 1.0
 
   // Allow VRDisplay.submitFrame to change gl bindings, which is more
