@@ -62,7 +62,7 @@ WebVRConfig = {
   // Scales the recommended buffer size reported by WebVR, which can improve
   // performance. Making this very small can lower the effective resolution of
   // your scene.
-  
+  //在VR显示模式下对WebVR推荐的屏幕比例进行缩放。在IOS下如果不为0.5会出现显示问题，查看
   //https://github.com/borismus/webvr-polyfill/pull/106
   BUFFER_SCALE: 0.5, // default: 1.0
 
@@ -73,6 +73,7 @@ WebVRConfig = {
   // gl.ARRAY_BUFFER_BINDING, gl.ELEMENT_ARRAY_BUFFER_BINDING,
   // and gl.TEXTURE_BINDING_2D for texture unit 0
   // Warning: enabling this might lead to rendering issues.
+  //允许 VRDisplay.submitFrame使用脏矩形渲染。但是开启此特性可能会出现渲染问题。
   //DIRTY_SUBMIT_FRAME_BINDINGS: true // default: false
 };
 </script>
@@ -128,11 +129,20 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 
 // Apply VR headset positional data to camera.
 var controls = new THREE.VRControls(camera);
+//站立姿态
 controls.standing = true;
 
 // Apply VR stereo rendering to renderer.
 var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
+
+// Create a VR manager helper to enter and exit VR mode.
+//按钮和全屏模式管理
+var params = {
+  hideButton: false, // Default: false.
+  isUndistorted: false // Default: false.
+};
+var manager = new WebVRManager(renderer, effect, params);
 
 
 // Add a repeating grid as a skybox.
@@ -159,16 +169,9 @@ function onTextureLoaded(texture) {
 
   // For high end VR devices like Vive and Oculus, take into account the stage
   // parameters provided.
+  //在高端的设备上，要考虑到设备提供的场景信息的更新。
   setupStage();
 }
-
-
-// Create a VR manager helper to enter and exit VR mode.
-var params = {
-  hideButton: false, // Default: false.
-  isUndistorted: false // Default: false.
-};
-var manager = new WebVRManager(renderer, effect, params);
 
 // Create 3D objects.
 var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
@@ -193,13 +196,15 @@ function animate(timestamp) {
   var delta = Math.min(timestamp - lastRender, 500);
   lastRender = timestamp;
 
-  // Apply rotation to cube mesh
+  //立方体的旋转
   cube.rotation.y += delta * 0.0006;
 
   // Update VR headset position and apply to camera.
+  //更新获取HMD的信息
   controls.update();
 
   // Render the scene through the manager.
+  //进行camera更新和场景绘制
   manager.render(scene, camera, timestamp);
 
   requestAnimationFrame(animate);
